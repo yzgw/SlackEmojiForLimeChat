@@ -144,7 +144,7 @@ body.normal .line[highlight=true] > .sender[type=normal] {
 
 .effect[color-number] { color: inherit; background-color: inherit; font-style: italic; }
 
-/* slack plugin */
+/* slack */
 .slack-emoji {
   width: 16px;
   height: 16px;

@@ -1,0 +1,152 @@
+html {
+	font-family: "Dejavu Sans Mono", "Monaco", monospace;
+	font-size: 8pt;
+  background-color: #181818;
+  color: #fff;
+  word-wrap: break-word;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+	margin: 0 0 2ex 0;
+  background-color: #181818;
+}
+
+.message {
+	line-height: 3.2ex;
+}
+
+hr { margin: 0.5em 2em; }
+
+a {
+	color: inherit;
+}
+
+.line  { padding: 0.2ex 0; }
+.time  { color: #5F5A60; }
+.place { color: #9a703f; }
+
+.inlineimage { border: 5px solid white; margin-left: 0px; }
+
+/* lines */
+
+body .line {
+  padding: 0px 0px 0px 100px;
+  position: relative;
+  margin: 0px;
+}
+
+.line[type=action] .sender:before {
+  content: "• ";
+  white-space: nowrap;
+}
+
+.url { word-break: break-all; }
+.address {
+  word-break: break-all;
+}
+.address:hover {
+  text-decoration: underline;
+}
+
+.place { color: #008; }
+
+/* nickname for text messages */
+
+.sender {
+  position: absolute;
+  width: 85px;
+  padding: 2px 5px;
+  padding-right:10px;
+  left: 0px;
+  text-align: right;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  background-color: #2F2F31;
+}
+
+.sender[type=normal] { color: #c4af75; font-weight: bold; margin-right: 1.5ex; }
+.sender[type=myself] { color: #8996A8; font-weight: bold; margin-right: 1.5ex; }
+
+/* message body */
+
+.message {
+  padding: 2px 50px 2px 10px;
+  background-color: #181818;
+  display: block;
+}
+
+/* Nicks */
+
+.sender[type=normal] { color: #c4af75; font-weight: bold; margin-right: 1.5ex; }
+.sender[type=myself] { color: #8996A8; font-weight: bold; margin-right: 1.5ex; }
+
+.message[type=privmsg] { color: #FFFFFF; }
+.message[type=action] { color: inherit;}
+.message[type=notice] { color: #daefa3; }
+.message[type=system] { color: #808080; }
+.message[type=error] { color: #ca773f; font-weight: bold; }
+.message[type=reply] { color: #f9ed97; }
+.message[type=error_reply] { color: #e3c59c; }
+.message[type=dcc_send_send] { color: #5e5960; }
+.message[type=dcc_send_receive] { color: #5e5960; }
+.message[type=join] { color: #5e5960; }
+.message[type=part] { color: #5e5960; }
+.message[type=quit] { color: #5e5960; }
+.message[type=kick] { color: #899a95; }
+.message[type=kill] { color: #899a95; }
+.message[type=nick] { color: #5e5960; }
+.message[type=mode] { color: #8e9c69; }
+.message[type=topic] { color: #8e9c69; }
+.message[type=invite] { color: #daefa3; font-style: italic; }
+.message[type=wallops] { color: #5e5960; }
+.message[type=debug_send] { color: #5e5960; }
+.message[type=debug_receive] { color: #5e5960; }
+
+.highlight {
+	color: #ca773f;
+	font-weight: normal;
+}
+
+.time {
+  color: #a099a1;
+  font-size: 8pt;
+  position: absolute;
+  right: 5px;
+  top: 30%;
+}
+
+body.normal .time {
+	visibility: hidden;
+}
+body.normal .line:hover .time {
+	visibility: visible;
+}
+
+body.normal div.line[type=action] .sender[type=normal], div.line[type=action] .sender[type=myself] {
+  color: #8996A8;
+}
+
+body.normal .sender[type=myself]:after {
+  content: " ★";
+  color: #6E7B8D;
+}
+
+body.normal .line[highlight=true] > .sender[type=normal] {
+	background-color: #3B434C;
+/*	background-color: #48515C;*/
+	color: #CF6A4C;
+}
+
+/* disable funky mirc colours */
+
+.effect[color-number] { color: inherit; background-color: inherit; font-style: italic; }
+
+/* slack plugin */
+.slack-emoji {
+  width: 16px;
+  height: 16px;
+  border: none;
+}

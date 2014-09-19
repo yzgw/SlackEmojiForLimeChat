@@ -1,12 +1,9 @@
 var apiToken = "YOUR API TOKEN HERE";
-var refreshMilliSeconds = 10 * 60 * 1000
+var refreshMilliSeconds = 10 * 60 * 1000;
 
 function main() {
-  var slackEmoji = new SlackEmoji(apiToken);
-  var slackEmojiReplacer = new SlackEmojiReplacer(slackEmoji);
-
-  // refresh cache per 10 minutes.
-  setInterval(slackEmoji.refresh(), refreshMilliSeconds);
+  var slackEmojiProvider = new SlackEmojiProvider(apiToken, refreshMilliSeconds);
+  var slackEmojiReplacer = new SlackEmojiReplacer(slackEmojiProvider);
 
   // add event listener for message insertion.
   document.addEventListener("DOMNodeInserted", function(e) {
@@ -18,17 +15,17 @@ function main() {
   }, false);
 }
 
-SlackEmoji = function(apiToken) {
+SlackEmojiProvider = function(apiToken, refreshMilliSeconds) {
   var emojiApiEndPoint = "https://slack.com/api/emoji.list";
   var requestUrl = emojiApiEndPoint + "?token=" + apiToken;
 
   var cache = {};
 
   this.get = function(key) {
-    return cache[key];
-  }
+    return cache;
+  };
 
-  this.refresh = function () {
+  function refresh() {
     var r = new XMLHttpRequest();
     r.open("GET", requestUrl, true);
     r.onload = function() {
@@ -39,28 +36,31 @@ SlackEmoji = function(apiToken) {
     r.send();
   }
 
-  // refresh emoji list at construction.
-  this.refresh();
-}
+  // refresh cache per 10 minutes.
+  setInterval(refresh(), refreshMilliSeconds);
 
-SlackEmojiReplacer = function(slackEmoji) {
-  var nameRegex = /:([\w\d+\-_]+):/g
+  // refresh emoji list at construction.
+  refresh();
+};
+
+SlackEmojiReplacer = function(slackEmojiProvider) {
+  var nameRegex = /:([\w\d+\-_]+):/g;
 
   this.replace = function(message) {
     return message.replace(nameRegex, function(name) {
       var iconName = name.substr(1, name.length-2);
-      var iconUrl = slackEmoji.get(iconName);
+      var iconUrl = slackEmojiProvider.get()[iconName];
       if(iconUrl === undefined) {
         return name;
       } else {
         return generateIconImgTag(iconUrl);
       }
     });
-  }
+  };
 
   function generateIconImgTag(iconUrl) {
-    return '<img class="slack-emoji" src=' + iconUrl + '>'
+    return '<img class="slack-emoji" src=' + iconUrl + '>';
   }
-}
+};
 
 main();

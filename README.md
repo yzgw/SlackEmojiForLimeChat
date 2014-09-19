@@ -2,23 +2,24 @@
 
 `:sushi::sushi::sushi:` -> :sushi::sushi::sushi:
 
-# Getting Started
+## Getting Started
 
-## 1. Download
+### 1. Download
 Download [master branch](https://github.com/yzgw/SlackEmojiForLimeChat/archive/master.zip).
 
-## 2. Locate
+### 2. Locate
 Unzip downloaded zip file, and locate `dist/RenameMe.js` to `~/Library/Application Support/LimeChat/Themes`.
 
-## 3. Rename
+### 3. Rename and Edit
 Rename `RenameMe.js` into `{YOUR USING THEME}.js`. (e.g., LimeLight.js, or HipChat.js.)
 
-## 4. Reload theme, if necessary.
-Open LimeChat Preferences, and select Theme tab.
-Set 'Current theme' once again.
+Then, open `{YOUR USING THEME}.js` and replace api token.
+The api token is shown on [slack api documentation page](https://api.slack.com/).
+
+    var apiToken = "YOUR API TOKEN HERE";
 
 By default, slick emoji are displayed in large size.
-I recommend adding next lines into `{YOUR USING THEME}.css` for more beautiful looks.
+I highly recommend adding next lines into `{YOUR USING THEME}.css` for more beautiful looks.
 
     /* slack */
     .slack-emoji {
@@ -28,9 +29,17 @@ I recommend adding next lines into `{YOUR USING THEME}.css` for more beautiful l
     }
 
 
-## 5. Done
+### 4. Reload theme, if necessary.
+Open LimeChat Preferences, and select Theme tab.
+Set 'Current theme' once again.
 
-# LICENSE
+### 5. Done
+
+## Limitation
+
+- Accepts only one group.
+
+## LICENSE
 MIT
 
 

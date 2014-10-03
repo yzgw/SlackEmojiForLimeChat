@@ -2,7 +2,7 @@
 
 `:sushi::sushi::sushi:` -> :sushi::sushi::sushi:
 
-## Getting Started
+## Usage
 
 ### 1. Download
 Download [master branch](https://github.com/yzgw/SlackEmojiForLimeChat/archive/master.zip).
